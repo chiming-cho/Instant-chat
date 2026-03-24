@@ -9,6 +9,8 @@ const client = redis.createClient({
     url: 'redis://localhost:6379'
 });
 
+const xss = require('xss');
+
 client.connect().then(() => {
     console.log('Connected to Redis');
 })
@@ -30,9 +32,11 @@ io.on('connection', async (socket) => {
 
     socket.on('message', async(msg) => {
         // Store message in Redis with an expiration of 1 day
+        const safeMsg = xss(msg);
+
         const key = `msg:${Date.now()}`;
-        await client.set(key, msg, { EX: 86400 });
-        io.emit('message', msg);
+        await client.set(key, safeMsg, { EX: 86400 });
+        io.emit('message', safeMsg);
     });
 });
 

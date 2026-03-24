@@ -1,4 +1,4 @@
-- 키는 방법
+# 키는 방법
 
 - Docker Desktop 실행
 - terminal> docker start redis
