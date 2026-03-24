@@ -1,0 +1,51 @@
+<!-- <input id="msg" type="text">
+<button onclick="sendMessage()">Send</button>
+<ul id="chat"></ul>
+
+<script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  function sendMessage() {
+    const msg = document.getElementById('msg').value;
+    socket.emit('message', msg);
+  }
+
+  socket.on('message', (msg) => {
+    const li = document.createElement('li');
+    li.textContent = msg;
+    document.getElementById('chat').appendChild(li);
+  });
+</script> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+</head>
+<body>
+  <h1>Simple Chat</h1>
+  <input id="msg" type="text" placeholder="Type a message">
+  <button onclick="sendMessage()">Send</button>
+  <ul id="chat"></ul>
+
+  <!-- Socket.IO 클라이언트 라이브러리 (CDN) -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script>
+    const socket = io("http://localhost:3000");
+
+    function sendMessage() {
+      const msg = document.getElementById('msg').value;
+      socket.emit('message', msg);
+    }
+
+    socket.on('message', (msg) => {
+      const li = document.createElement('li');
+      li.textContent = msg;
+      document.getElementById('chat').appendChild(li);
+    });
+  </script>
+</body>
+</html>
