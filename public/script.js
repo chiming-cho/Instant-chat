@@ -11,3 +11,7 @@ socket.on('message', (msg) => {
     li.textContent = msg;
     document.getElementById('chat').appendChild(li);
 });
+
+socket.on('ConnectionError', (msg) => {
+    alert(msg);
+});
