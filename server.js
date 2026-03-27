@@ -37,10 +37,26 @@ function generateRoomCode(length = 4) {
 io.on('connection', async (socket) => {
     console.log('User connected');
     try {
-        const keys = await client.keys('msg:*');
+        let cursor = '0';
+        const keys =[];
+        do {
+            const result = await client.scan(cursor, {
+                MATCH: 'msg:*',
+                COUNT: 100
+            });
+            cursor = result.cursor;
+            keys.push(...result.keys);
+        } while (cursor !== '0');
+
+        keys.sort((a,b) => {
+            const ta = parseInt(a.split(':')[1] || 0);
+            const tb = parseInt(b.split(':')[1] || 0);
+            return ta - tb;
+        });
+
         for (const key of keys) {
             const msg = await client.get(key);
-            socket.emit('message',msg);
+            socket.emit('message', msg);
         }
     } catch (err) {
         console.error('Redis read failed:', err.message);
