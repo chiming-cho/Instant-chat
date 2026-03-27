@@ -50,7 +50,9 @@ io.on('connection', async (socket) => {
     socket.on('message', async(msg) => {
         // Store message in Redis with an expiration of 1 day
         const safeMsg = xss(msg);
-
+        if (safeMsg.length == 0) {
+            return;
+        }
         try {
             const key = `msg:${Date.now()}`;
             await client.set(key, safeMsg, { EX: 86400 });
