@@ -1,24 +1,33 @@
 {
-  "name": "chat",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "instant-chat",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.6",
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "multer": "^2.1.1",
-    "nodemon": "^3.1.14",
-    "redis": "^5.11.0",
-    "socket.io": "^4.8.3",
-    "socket.io-client": "^4.8.3",
-    "xss": "^1.0.15"
+    "@aws-sdk/client-s3": "^3.1071.0",
+    "@aws-sdk/s3-request-presigner": "^3.1071.0",
+    "@prisma/client": "^7.8.0",
+    "@supabase/supabase-js": "^2.108.2",
+    "dayjs": "^1.11.21",
+    "nanoid": "^5.1.11",
+    "next": "16.2.9",
+    "prisma": "^7.8.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
